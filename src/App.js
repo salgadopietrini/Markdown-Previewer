@@ -1,10 +1,17 @@
 import React, { useState } from "react";
+import marked from "marked";
 
 function TextEditor() {
   const [plainText, setPlainText] = useState("");
 
   const handleChange = (event) => {
-    setPlainText(event.target.value);
+    setPlainText(marked(event.target.value));
+  };
+
+  const rendT = () => {
+    return {
+      __html: plainText,
+    };
   };
 
   return (
@@ -19,7 +26,7 @@ function TextEditor() {
         onChange={handleChange}
       />
 
-      <div>{plainText}</div>
+      <div dangerouslySetInnerHTML={rendT()}></div>
     </div>
   );
 }
