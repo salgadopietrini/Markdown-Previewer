@@ -1,17 +1,35 @@
 import React, { useState } from "react";
-import marked from "marked";
+import * as marked from "marked";
+
+marked.setOptions({
+  breaks: true,
+});
 
 function TextEditor() {
   const [plainText, setPlainText] = useState(
-    "<h1>This is a h1</h1>" +
-      "<h2>This is a h2</h2>" +
-      "<a href=''>This is a link</a>" +
-      "<p><code>This is an inline code</code></p> " +
-      "<code>This is a code block</code>" +
-      "<ul><li>This is the first element of a list</li><li>This is the second element of a list</li></ul>" +
-      "<blockquote cite=''>This is a blockquote</blockquote>" +
-      "<img src='https://static.thenounproject.com/png/526867-200.png' alt='This is an image'>" +
-      "<b>This text is bolded</b>"
+    `# This is an H1
+        ## This is an H2
+
+        [This a link]()
+
+        This is an inline code: \`<div></div>\`
+
+        \`\`\`
+        This is a block of code
+        let a=123,
+        let b=123,
+        console.log(a+b)
+        \`\`\`
+
+        1. This is the first element of a list.
+        2. This is the second element of a list.
+
+        >This is a blockquote
+
+        ![This is an image](https://static.thenounproject.com/png/526867-200.png 'This is the hover text') 
+
+        "**This text is bolded**"
+      `
   );
 
   const handleChange = (event) => {
